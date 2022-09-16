@@ -5,10 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import java.util.UUID;
-
 @Getter
 @Setter
 @AllArgsConstructor
