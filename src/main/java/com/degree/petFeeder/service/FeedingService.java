@@ -10,13 +10,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FeedingService {
 
     @Autowired
     FeedingRepository feedingRepository;
+
+    @Autowired
+    MqttService mqttService;
 
     @Autowired
     ModelMapper modelMapper;
@@ -49,5 +51,10 @@ public class FeedingService {
 
     public void delete(Long id) {
         feedingRepository.deleteById(id);
+    }
+
+    public void startFeeding(Long id) {
+        Feeding model = feedingRepository.findById(id).orElseThrow(() -> new ApiException(ApiException.RESOURCE_NOT_FOUND, String.format("Hranjenje %s ne obstaja.", id)));
+        mqttService.turnMotor(model.getDurationSeconds());
     }
 }
