@@ -30,7 +30,7 @@ public class ScheduleController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<ScheduleDTO>> getAll(@SortDefault(sort = {"time", "active"}, direction = Sort.Direction.DESC) Sort sort) {
+    public ResponseEntity<List<ScheduleDTO>> getAll(@SortDefault(sort = {"time", "active"}, direction = Sort.Direction.ASC) Sort sort) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Content-Type", "application/json; charset=utf-8");
 

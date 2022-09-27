@@ -15,12 +15,12 @@ public class MqttController {
     @Autowired
     MqttService mqttService;
 
-    @GetMapping(value = "connection-status", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/connection-status", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ConnectionDTO> checkConnection() {
         return new ResponseEntity<>(mqttService.checkConnection(), HttpStatus.OK);
     }
 
-    @PostMapping(value = "turn-motor/{seconds}")
+    @PostMapping(value = "/turn-motor/{seconds}")
     public ResponseEntity<Void> turnMotor(@PathVariable(name = "seconds") Float seconds) {
         mqttService.turnMotor(seconds);
         return new ResponseEntity<>(HttpStatus.OK);
