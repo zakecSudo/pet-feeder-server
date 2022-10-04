@@ -12,7 +12,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
+
+import static com.degree.petFeeder.utils.ScheduleUtils.sortUpcoming;
 
 @Service
 public class ScheduleService {
@@ -32,6 +33,11 @@ public class ScheduleService {
 
     public List<ScheduleDTO> getAll(Sort sort) {
         return modelMapper.modelToSchedulesDto(scheduleRepository.findAll(sort));
+    }
+
+    public List<ScheduleDTO> getUpcoming() {
+        List<Schedule> schedules = scheduleRepository.findByActiveAndRepeatDaysNotEmpty(true, Sort.by(Sort.Direction.ASC, "time"));
+        return modelMapper.modelToSchedulesDto(sortUpcoming(schedules));
     }
 
     public ScheduleDTO create(ScheduleStorableDTO dto) {

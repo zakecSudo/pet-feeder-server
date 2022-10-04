@@ -37,6 +37,14 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleService.getAll(sort), responseHeaders, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/upcoming")
+    public ResponseEntity<List<ScheduleDTO>> getUpcoming() {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.add("Content-Type", "application/json; charset=utf-8");
+
+        return new ResponseEntity<>(scheduleService.getUpcoming(), responseHeaders, HttpStatus.OK);
+    }
+
     @PostMapping(value = "")
     public ResponseEntity<ScheduleDTO> create(@Valid @RequestBody ScheduleStorableDTO dto) {
         HttpHeaders responseHeaders = new HttpHeaders();
