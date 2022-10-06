@@ -30,7 +30,7 @@ public class FeedingController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<FeedingDTO>> getAll(@SortDefault(sort = {"name"}, direction = Sort.Direction.DESC) Sort sort) {
+    public ResponseEntity<List<FeedingDTO>> getAll(@SortDefault(sort = {"name"}, direction = Sort.Direction.ASC) Sort sort) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.add("Content-Type", "application/json; charset=utf-8");
 
