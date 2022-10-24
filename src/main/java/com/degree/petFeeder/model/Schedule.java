@@ -25,7 +25,7 @@ public class Schedule {
     private LocalTime time;
     @ElementCollection(targetClass = Day.class)
     @JoinTable(name = "schedule_repeat_days", joinColumns = @JoinColumn(name = "schedule_id"))
-    @Column(name = "interest", nullable = false)
+    @Column(name = "day", nullable = false)
     @Enumerated(EnumType.STRING)
     List<Day> repeatDays;
     @ManyToOne
