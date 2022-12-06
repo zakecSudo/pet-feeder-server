@@ -10,7 +10,6 @@ import com.degree.petFeeder.repository.FeedingRepository;
 import org.mapstruct.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Mapper(componentModel = "spring")
 public interface ModelMapper {
@@ -29,7 +28,10 @@ public interface ModelMapper {
 
     List<ScheduleDTO> modelToSchedulesDto(List<Schedule> models);
 
-    @Mapping(target = "feeding", source = "feedingId", qualifiedByName = "idToFeeding")
+    @Mappings({
+            @Mapping(target = "id", ignore = true),
+            @Mapping(target = "feeding", source = "feedingId", qualifiedByName = "idToFeeding")
+    })
     Schedule dtoToModel(ScheduleStorableDTO dto, @Context FeedingRepository feedingRepository);
 
     @InheritConfiguration(name = "dtoToModel")

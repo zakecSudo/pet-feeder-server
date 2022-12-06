@@ -12,7 +12,7 @@ public class MqttPublisher implements MqttCallback {
     @Value("${mqtt.broker-address:mone.local}")
     private String brokerAddress = "tcp://mone.local:1883";
     @Value("${mqtt.client-id:pet-feeder_backend}")
-    private String clientId = "pet-feeder_backend";
+    private String clientId = "pet-feeder-backend";
     private MqttClient mqttClient;
     private MqttConnectOptions connectionOptions;
     private static final Logger logger = LoggerFactory.getLogger(MqttPublisher.class);
